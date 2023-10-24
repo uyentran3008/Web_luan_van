@@ -14,7 +14,7 @@
                         <input type="file" accept="image/*" name="image" id="image-input" class="form-control">
 
                         @error('image')
-                            <span class="text-danger"> {{ $message }}</span>
+                            <span class="text-danger"></span>
                         @enderror
                     </div>
                     <div class="col-5">
@@ -31,17 +31,36 @@
                     @enderror
                 </div>
 
-                <div class="input-group input-group-static mb-4">
-                    <label>Price</label>
-                    <input type="number" step="0.1" value="{{ old('price') }}" name="price" class="form-control">
-                    @error('price')
-                        <span class="text-danger"> {{ $message }}</span>
-                    @enderror
+                <div class="form-group">
+                    <label for="sizes">Sizes and Prices</label>
+                    <table class="table" id="tableSize">
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                             @foreach($sizes as $size)
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="sizes[]" value="{{ $size->id }}" id="size_{{ $size->id }}">
+                                    <label for="size_{{ $size->id }}">{{ $size->name }}</label>
+                                </td>
+                                <td>
+                                    <input type="number" name="prices[]" step="0.01" placeholder="Price" >
+                                    
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
+                
 
                 <div class="input-group input-group-static mb-4">
                     <label>Sale</label>
-                    <input type="number" value="0" value="{{ old('sale') }}" name="sale" class="form-control">
+                    <input type="text" value="0" value="{{ old('sale') }}" name="sale" class="form-control">
                     @error('sale')
                         <span class="text-danger"> {{ $message }}</span>
                     @enderror
@@ -59,14 +78,14 @@
                         <span class="text-danger"> {{ $message }}</span>
                     @enderror
                 </div>
-                <input type="hidden" id="inputSize" name='sizes'>
+                {{-- <input type="hidden" id="inputSize" name='sizes'>
                 <!-- Button trigger modal -->
                 <button style="margin-top: 10px" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddSizeModal">
                     Add size
-                </button>
+                </button> --}}
 
                 <!-- Modal -->
-                <div class="modal fade" id="AddSizeModal" tabindex="-1" aria-labelledby="AddSizeModalLabel"
+                {{-- <div class="modal fade" id="AddSizeModal" tabindex="-1" aria-labelledby="AddSizeModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -83,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
         </div>
         <div class="input-group input-group-static mb-4">
             <label name="group" class="ms-0">Category</label>

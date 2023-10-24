@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
         $category = $this->category->create($dataCreate);
 
-        return  redirect()->route('categories.index')->with(['message' => 'create new category: '. $category->name]." success");
+        return  redirect()->route('categories.index')->with(['message' => 'create new category success']);
     }
 
     public function edit($id)

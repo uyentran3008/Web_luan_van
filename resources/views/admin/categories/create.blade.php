@@ -10,9 +10,9 @@
                     <label>Name</label>
                     <input type="text" name="name" class="form-control">
 
-                    @error('name')
+                    {{-- @error('name')
                         <span class="text-danger">{{ message }}</span>
-                    @enderror
+                    @enderror --}}
                 </div>
 
                 <div class="input-group input-group-static mb-4">

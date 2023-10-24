@@ -6,7 +6,7 @@
     <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="row">
+        {{-- <div class="row">
             <div class="input-group-static col-5 mb-4">
                 <label>Image</label>
                 <input type="file" accept="image/*" name="image" id="image-input" class="form-control">
@@ -15,10 +15,10 @@
                     <span class="text-danger">{{ message }}</span>
                 @enderror
             </div>
-            <div class="col-5">
+            {{-- <div class="col-5">
                 <img src="{{ $user->images ? asset('upload/' . $user->images->first()->url) : 'upload/default.png' }}" id="show-image" width="100px" height="100px" alt="">
-            </div>
-        </div>    
+            </div> 
+        </div>     --}}
             <div class=" input-group input-group-static mb-4">
                 <label for="">Name</label>
                 <input type="text" value="{{ old('name') ?? $user->name }}" name="name" class="form-control">

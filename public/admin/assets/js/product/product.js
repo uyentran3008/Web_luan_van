@@ -8,107 +8,90 @@ $(() => {
         .catch((err) => {
             console.error(err.stack);
         });
-    renderSizes(sizes);
-    appendSizesToForm();
-
-    function renderSizes(sizes) {
-        for (let size of sizes) {
-            renderSize(size);
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#show-image").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-    }
+        
+            $("#image-input").change(function () {
+                readURL(this);
+            });
+        
+    
+            // $(document).ready(function() {
+            //     $('#add-size-btn').on('click', function() {
+            //         var newField = `
+            //             <div class="size-row">
+            //                 <div class="form-group">
+            //                     <label for="size_name">Size Name:</label>
+            //                     <input type="hidden" name="sizes[id][]" value="">
+            //                     <input type="text" id="size_name" name="sizes[name][]" style="text-transform: uppercase" value="" required >
+            //                 </div>
+            //                 <div class="form-group">
+            //                     <label for="price">Price:</label>
+            //                     <input type="number" id="price" name="sizes[price][]" value="" required >
+            //                 </div>
+            //             </div>   
+                       
+            //         `;
+                    
+            //         $('#sizes-container').append(newField);
+            //     });
+            // });
+            
 
-    function getSizeIndex(sizes, id) {
-        let index = _.findIndex(sizes, function (o) {
-            return o.id == id;
-        });
+            // $('#add-size-btn').click(function() {
+            //     $.ajax({
+            //         url: '/sizes', // Replace with the appropriate URL for your Laravel route or API endpoint
+            //         type: 'GET',
+            //         success: function(response) {
+            //             // Handle the response data from the server
+            //             var sizes = response.sizes;
+                        
+            //             // Display the sizes in a dropdown or modal
+            //             // For example, assuming you have a dropdown element with id "size-dropdown":
+            //             var dropdown = $('#size-dropdown');
+            //             dropdown.empty();
+            //             $.each(sizes, function(index, size) {
+            //                 dropdown.append('<option value="' + size.id + '">' + size.name + '</option>');
+            //             });
+                        
+            //             // Show the dropdown or modal
+            //             // For example, assuming you have a dropdown element with id "size-dropdown":
+            //             dropdown.show();
+            //         },
+            //         error: function(error) {
+            //             console.log(error);
+            //         }
+            //     });
+            // });
 
-        return index;
-    }
-
-    function removeSize(sizes, id) {
-        let index = getSizeIndex(sizes, id);
-        if (index >= 0) {
-            $(`#product-size${sizes[index].id}`).remove();
-            sizes.splice(index, 1);
-        }
-    }
-
-    function addSize() {
-        let size = {
-            id: Date.now(),
-            size: "L",
-            price: 0,
-        };
-        sizes = [...sizes, size];
-        renderSize(size);
-    }
-
-    function appendSizesToForm() {
-        $("#inputSize").val(JSON.stringify(sizes));
-    }
-
-    $(document).on("click", ".btn-remove-size", function () {
-        let id = $(this).data("id");
-        removeSize(sizes, id);
-        appendSizesToForm();
-    });
-
-    $(document).on("click", ".btn-add-size", function () {
-        addSize();
-        appendSizesToForm();
-    });
-
-    $(document).on("keyup", ".input-size", function () {
-        let id = $(this).data("id");
-        let size = $(this).val();
-        let index = getSizeIndex(sizes, id);
-        console.log(1);
-        if (index >= 0) {
-            sizes[index].size = size;
-        }
-        appendSizesToForm();
-    });
-
-    function renderSize(size) {
-        let html = `<div class="product-item-size" id="product-size${size.id}">
-                            <div class="row ">
-                                <div class="input-group input-group-static col-5 w-40">
-                                    <label>Size</label>
-                                    <input value="${size.size}" type="text" class="form-control input-size" data-id="${size.id}">
-                                </div>
-
-                                <div class="input-group input-group-static col-5 w-40">
-                                    <label>Price</label>
-                                    <input type="number" value="${size.price}" class="form-control input-quantity" data-id="${size.id}">
-                                </div>
-                                <div class="w-20">
-                                    <button type="button" class="btn btn-danger btn-remove-size" data-id="${size.id}">X</button>
-                                </div>
-                            </div>`;
-        $("#AddSizeModalBody").append(html);
-    }
-
-    $(document).on("keyup", ".input-quantity", function () {
-        let id = $(this).data("id");
-        let price = $(this).val();
-        let index = getSizeIndex(sizes, id);
-
-        if (index >= 0) {
-            sizes[index].price = price;
-        }
-    });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $("#show-image").attr("src", e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#image-input").change(function () {
-        readURL(this);
-    });
+            $(document).ready(function() {
+                // {{-- // Handle click event on "Add Size" button --}}
+                $('#add-size').click(function() {
+                    var sizeId = $('#size-dropdown').val();
+                    var sizeName = $('#size-dropdown option:selected').text();
+                    
+                    if (sizeId && sizeName) {
+                        var sizeRow = $('<div class="size-row"></div>');
+                        sizeRow.append('<label>'+'Size:' + sizeName + '</label>');
+                        sizeRow.append('<input type="number" name="sizes[' + sizeId + '][price]">');
+                        
+                        sizeRow.append('<button type="button" class="remove-size">Remove</button>');
+                        
+                        $('#sizes-container').append(sizeRow);
+                    }
+                });
+                
+                // Handle click event on "Remove" button
+                $(document).on('click', '.remove-size', function() {
+                    $(this).closest('.size-row').remove();
+                });
+            });
+   
 });

@@ -40,10 +40,10 @@ class UserController extends Controller
     {
         $dataCreate = $request->all();
         $dataCreate['password'] = Hash::make($request->password);
-        $dataCreate['image'] = $this->user->saveImage($request);
+        // $dataCreate['image'] = $this->user->saveImage($request);
 
         $user = $this->user->create($dataCreate);
-        $user->images()->create(['url'=> $dataCreate['image']]);
+        // $user->images()->create(['url'=> $dataCreate['image']]);
         $user->roles()->attach($dataCreate['role_ids']);
         return to_route('users.index')->with(['message'=> 'create success']);
     }
@@ -71,12 +71,12 @@ class UserController extends Controller
         {
             $dataCreate['password'] = Hash::make($request->password);
         }
-        $currentImage =  $user->images ? $user->images->first()->url : '';
-        $dataUpdate['image'] = $this->user->updateImage($request, $currentImage);
+        // $currentImage =  $user->images ? $user->images->first()->url : '';
+        // $dataUpdate['image'] = $this->user->updateImage($request, $currentImage);
 
         $user->update($dataUpdate);
-        $user->images()->delete();
-        $user->images()->create(['url' => $dataUpdate['image']]);
+        // $user->images()->delete();
+        // $user->images()->create(['url' => $dataUpdate['image']]);
         $user->roles()->sync($dataUpdate['role_ids'] ?? []);
         return to_route('users.index')->with(['message' => 'Update success']);
 
@@ -88,9 +88,9 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user =  $this->user->findOrFail($id)->load('roles');
-        $user->images()->delete();
-        $imageName =  $user->images->count() > 0 ? $user->images->first()->url : '';
-        $this->user->deleteImage($imageName);
+        // $user->images()->delete();
+        // $imageName =  $user->images->count() > 0 ? $user->images->first()->url : '';
+        // $this->user->deleteImage($imageName);
         $user->delete();
 
         return redirect()->route('users.index')->with(['message' => 'Delete success']);

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->double('price');
             $table->smallInteger('sale')->default(0);
             $table->timestamps();
         });

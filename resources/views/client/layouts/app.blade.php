@@ -1,3 +1,4 @@
 @include('client.layouts.header');
-<h1>Content</h1>
+{{-- @include('client.layouts.navbar'); --}}
+@yield('content')
 @include('client.layouts.footer');

@@ -1,13 +1,13 @@
-@extends('layouts.app')
-
+@extends('client.layouts.login')
+@section('title', 'Login')
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div class="card-body"> --}}
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -53,6 +53,9 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
+                                {{-- <button type="submit" class="btn btn-danger">
+                                    <a href="{{ route('home') }}" style="color: white; text-decoration: none;">Back</a>
+                                </button> --}}
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
@@ -64,10 +67,13 @@
                                 @endif
                             </div>
                         </div>
+                        <div  class="row mb-0" style="text-align: center; padding-top: 20px">
+                            <a href="{{ route('register') }}">Don't have an account? Sign Up</a>
+                        </div>
                     </form>
-                </div>
+                {{-- </div>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection

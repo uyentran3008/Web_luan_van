@@ -24,7 +24,7 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required|unique:users,phone',
-            'image' => ' required|image|mimes:png,jpg,PNG,jpec',
+            'image' => 'image|mimes:png,jpg,PNG,jpec',
             'gender' => 'required',
             'password' => 'required|min:6',
             'email' => 'required|email|unique:users,email',

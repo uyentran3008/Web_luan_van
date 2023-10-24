@@ -42,7 +42,7 @@
                     <label >Permission</label>
                     <div class="row">
                         @foreach($permissions as $groupName => $permission)
-                        <div class="col-5">
+                        <div class="col-4">
                             <h4>{{ $groupName }}</h4>
                             <div>
                                 @foreach( $permission as $item)

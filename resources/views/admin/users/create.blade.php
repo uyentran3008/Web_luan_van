@@ -7,7 +7,7 @@
     <div>
         <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="row">
+            {{-- <div class="row">
 
                 <div class=" input-group-static col-5 mb-4">
                     <label for="">Image</label>
@@ -20,7 +20,7 @@
                     @enderror
                 </div>
                 <div class="col-5" ><img src="" id="show-image" width="100px" height="100px" alt=""></div>
-            </div>
+            </div> --}}
                 <div class=" input-group input-group-static mb-4">
                     <label for="">Name</label>
                     <input type="text" value="" name="name" class="form-control">
@@ -81,7 +81,7 @@
                     <label for="">Roles</label>
                     <div class="row">
                         @foreach($roles as $groupName => $role)
-                        <div class="col-5">
+                        <div class="col-3">
                             {{-- <h4>{{ $groupName }}</h4> --}}
                             <div>
                                 @foreach ($role as $item)
