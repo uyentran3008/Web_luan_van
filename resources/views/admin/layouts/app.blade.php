@@ -18,6 +18,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/assets/img/apple-icon.png')}}">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
   <title>
@@ -35,6 +36,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('admin/assets/css/material-dashboard.css?v=3.0.2')}}" rel="stylesheet" />
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+  @yield('style')
   <style>
     .w-40 {
         width: 40%;
@@ -55,14 +58,7 @@
     }
 
 </style>
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="{{ asset('admin/assets/base/base.js') }}"></script>
-  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-  <script src="{{ asset('admin/assets/js/product/product.js') }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
-        integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
         {{-- <script>
           let sizes = [{
               id: Date.now(),
@@ -566,10 +562,22 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('admin/assets/js/material-dashboard.min.js?v=3.0.2')}}"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="" crossorigin="anonymous"></script>
-  <script src="//cdb.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="" crossorigin="anonymous"></script> --}}
+  {{-- <script src="//cdb.jsdelivr.net/npm/sweetalert2@11"></script> --}}
   {{-- <script src="{{ asset('admin/assets/base/base.js')}}"></script> --}}
-{{-- @yield('script') --}}
+ 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+        integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+
+  <script src="{{ asset('admin/assets/base/base.js') }}"></script>
+
+  {{-- <script src="{{ asset('admin/assets/js/product/product.js') }}"></script> --}}
+  
+        
+  @yield('scripts')
 </body>
 
 </html>

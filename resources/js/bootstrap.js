@@ -1,4 +1,9 @@
 import 'bootstrap';
+window._ = require('lodash');
+
+try {
+    require('bootstrap');
+} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -22,54 +22,7 @@ $(() => {
                 readURL(this);
             });
         
-    
-            // $(document).ready(function() {
-            //     $('#add-size-btn').on('click', function() {
-            //         var newField = `
-            //             <div class="size-row">
-            //                 <div class="form-group">
-            //                     <label for="size_name">Size Name:</label>
-            //                     <input type="hidden" name="sizes[id][]" value="">
-            //                     <input type="text" id="size_name" name="sizes[name][]" style="text-transform: uppercase" value="" required >
-            //                 </div>
-            //                 <div class="form-group">
-            //                     <label for="price">Price:</label>
-            //                     <input type="number" id="price" name="sizes[price][]" value="" required >
-            //                 </div>
-            //             </div>   
-                       
-            //         `;
-                    
-            //         $('#sizes-container').append(newField);
-            //     });
-            // });
-            
 
-            // $('#add-size-btn').click(function() {
-            //     $.ajax({
-            //         url: '/sizes', // Replace with the appropriate URL for your Laravel route or API endpoint
-            //         type: 'GET',
-            //         success: function(response) {
-            //             // Handle the response data from the server
-            //             var sizes = response.sizes;
-                        
-            //             // Display the sizes in a dropdown or modal
-            //             // For example, assuming you have a dropdown element with id "size-dropdown":
-            //             var dropdown = $('#size-dropdown');
-            //             dropdown.empty();
-            //             $.each(sizes, function(index, size) {
-            //                 dropdown.append('<option value="' + size.id + '">' + size.name + '</option>');
-            //             });
-                        
-            //             // Show the dropdown or modal
-            //             // For example, assuming you have a dropdown element with id "size-dropdown":
-            //             dropdown.show();
-            //         },
-            //         error: function(error) {
-            //             console.log(error);
-            //         }
-            //     });
-            // });
 
             $(document).ready(function() {
                 // {{-- // Handle click event on "Add Size" button --}}
@@ -94,4 +47,6 @@ $(() => {
                 });
             });
    
+            
+        
 });

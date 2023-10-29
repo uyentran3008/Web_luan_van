@@ -9,7 +9,7 @@ class CartProduct extends Model
 {
     use HasFactory;
 
-    protected $table = 'cart_product';
+    protected $table = 'cart_products';
     protected $fillable = [
         'cart_id',
         'product_id',
@@ -35,7 +35,7 @@ class CartProduct extends Model
     // }
     public function size()
     {
-        return $this->belongsTo(Size::class);
+        return $this->belongsTo(Size::class, 'size_id');
     }
 
     public function getBy($cartId, $productId, $sizeId)
@@ -43,7 +43,13 @@ class CartProduct extends Model
         return CartProduct::whereCartId($cartId)->whereProductId($productId)->whereSizeId($sizeId)->first();
     }
 
-    
+    public function getTotalPriceAttribute()
+    {
+        return   
+        $this->product->sale ? $this->product->sizes()->where('name', $this->size->name)->first()->pivot->price - ($this->product->sizes()->where('name', $this->size->name)->first()->pivot->price  * 0.01 * $this->product->sale) * $this->product_quantity 
+        : $this->product->sizes()->where('name', $this->size->name)->first()->pivot->price * $this->product_quantity ;
+    }
+
 
 
 }

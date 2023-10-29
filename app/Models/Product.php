@@ -40,7 +40,7 @@ class Product extends Model
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class, 'product_sizes')
+        return $this->belongsToMany(Size::class, 'product_sizes','product_id','size_id')
                     ->withPivot('price');
     }
 
@@ -64,8 +64,9 @@ class Product extends Model
         return $this->attributes['sale'] ? $this->attributes['price'] - ($this->attributes['sale'] * 0.01  * $this->attributes['price']) : 0;
     }
 
-//     public function carts()
-// {
-//     return $this->belongsToMany(Cart::class, 'cart_product');
-// }
+    public  function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_products')->withPivot('quantity','size_id');
+    }
+
 }

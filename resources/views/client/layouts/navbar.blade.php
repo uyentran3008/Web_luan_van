@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav ml-auto p-4">
-                <a href="" class="nav-item nav-link active">Home</a>
-                <a href="" class="nav-item nav-link">About</a>
+                <a href="{{ route( 'client.home') }}" class="nav-item nav-link active">Home</a>
+                {{-- <a href="" class="nav-item nav-link">About</a> --}}
                 <div class="nav-item dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
                     <div class="dropdown-menu text-capitalize">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 {{-- <a href="" class="nav-item nav-link">Menu</a> --}}
-                <a href="" class="nav-item nav-link">Service</a>
+                <a href="{{ route('client.orders.index') }}" class="nav-item nav-link">Order</a>
                 <a href="" class="nav-item nav-link">Contact</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
