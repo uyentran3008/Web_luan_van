@@ -50,8 +50,8 @@ class RoleDatabaseSeeder extends Seeder
             ['name' => 'show-coupon','display_name'=>' Show coupon', 'group'=>'coupon'],
             ['name' => 'delete-coupon','display_name'=>' Delete coupon', 'group'=>'coupon'],
 
-            // ['name' => 'list-order','display_name'=>'list order ', 'group'=>'orders'],
-            // ['name' => 'update-order-stattus','display_name'=>' Update oder status', 'group'=>'orders'],
+            ['name' => 'list-order','display_name'=>'list order ', 'group'=>'orders'],
+            ['name' => 'update-order-stattus','display_name'=>' Update oder status', 'group'=>'orders'],
         ];
         foreach($permissions as $item){
             Permisson::updateOrCreate($item);

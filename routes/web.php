@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\MaterialController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SizeController;
@@ -10,7 +11,11 @@ use App\Http\Controllers\client\CartController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\OrderController;
 use App\Http\Controllers\client\ProductController as ClientProductController;
-use App\Http\Controllers\admin\OrderController as AdminOrderController;;
+use App\Http\Controllers\admin\OrderController as AdminOrderController;
+use App\Http\Controllers\admin\SupplierController;
+
+
+;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -61,8 +66,10 @@ Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
 Route::resource('sizes', SizeController::class);
 Route::resource('coupons', CouponController::class);
+// Route::get('/admin/suppliers', 'SuppliersController@index')->name('admin.suppliers.index');
 Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
 Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status');
-
+Route::resource('suppliers',SupplierController::class);
+Route::resource('materials',MaterialController::class);
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -78,6 +78,24 @@
               <span class="nav-link-text ms-1">Order</span>
           </a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link text-white {{ request()->routeIs('admin.suppliers.*') ? 'bg-gradient-primary active' : '' }} "
+              href="{{ route('suppliers.index') }}">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">inventory_2</i>
+              </div>
+              <span class="nav-link-text ms-1">Supplier</span>
+          </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white {{ request()->routeIs('admin.suppliers.*') ? 'bg-gradient-primary active' : '' }} "
+            href="{{ route('materials.index') }}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">food_bank</i>
+            </div>
+            <span class="nav-link-text ms-1">Material</span>
+        </a>
+    </li>
 
       </ul>
     {{-- </div> --}}
