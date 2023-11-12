@@ -14,4 +14,14 @@ class Material extends Model
         'price',
         'inventory_number'
     ];
+
+    public function import()
+    {
+        return $this->hasMany(ImportMaterial::class);
+    }
+
+    public function export()
+    {
+        return $this->hasMany(ExportMaterial::class);
+    }
 }

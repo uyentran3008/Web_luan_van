@@ -36,8 +36,12 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $dataCreate = $request->all();
-        $this->material->create($dataCreate);
+        $material = new Material();
+        $material->name = $request->input('name');
+        $material->unit_of_measure = $request->input('unit_of_measure');
+        $material->price = $request->input('price');
+        $material->inventory_number = $request->input('inventory_number');
+        $material->save();
         return redirect()->route('materials.index')->with(['message' => 'create material success']);
     }
 
@@ -55,6 +59,8 @@ class MaterialController extends Controller
     public function edit(string $id)
     {
         $material = $this->material->findOrFail($id);
+        
+        
         return view('admin.materials.edit', compact('material'));
     }
 

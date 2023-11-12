@@ -38,7 +38,7 @@ class SupplierController extends Controller
     {
         $dataCreate = $request->all();
         $this->supplier->create($dataCreate);
-        return redirect()->route('suppliers.index')->with(['message' => 'create coupon success']);
+        return redirect()->route('suppliers.index')->with(['message' => 'create supplier success']);
     }
 
     /**

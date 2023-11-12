@@ -40,6 +40,8 @@ class CartController extends Controller
 
     public function index()
     {
+        // dd(auth()->user()->id);
+        // dd($this->cart);
         $carts = $this->cart->firtOrCreateBy(auth()->user()->id)->load('products');
         // dd($cartId);
         // $cartId = Cart::where('user_id', auth()->user()->id)->value('id');
@@ -71,6 +73,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(auth()->user()->id);
         if($request->size_id) {
 
         $product = $this->product->findOrFail($request->product_id);

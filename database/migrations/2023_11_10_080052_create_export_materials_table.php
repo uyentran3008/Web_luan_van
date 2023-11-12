@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Product;
-use App\Models\User;
+use App\Models\Material;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cart_products', function (Blueprint $table) {
+        Schema::create('export_materials', function (Blueprint $table) {
             $table->id();
-            
-            $table->smallInteger('product_quantity');
-            
-            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            // $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Material::class)->constrained()->cascadeOnDelete();
+            $table->smallInteger('export_quantity');
+            $table->date('export_date');
+            $table->string('exporter');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_products');
+        Schema::dropIfExists('export_materials');
     }
 };

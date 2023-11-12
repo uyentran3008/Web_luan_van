@@ -128,7 +128,7 @@ class ProductController extends Controller
     }
     $product->assignCategory($dataCreate['category_ids']);
   
-    return redirect()->route('products.index')->with('success', 'Sản phẩm đã được thêm thành công.');
+    return redirect()->route('products.index')->with('success', 'Create product success');
 }
 
     /**

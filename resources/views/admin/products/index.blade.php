@@ -26,14 +26,19 @@
                 {{-- <td>{{ $item->price }}</td> --}}
                 <td>{{ $item->sale }}</td>
                 <td>
+                    {{-- @can('update-product') --}}
                     <a href="{{ route('products.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                    {{-- @endcan --}}
+                    {{-- @can('show-product') --}}
                     <a href="{{ route('products.show', $item->id) }}" class="btn btn-primary">Show</a>
+                    {{-- @endcan --}}
+                    {{-- @can('delete-product') --}}
                     <form action="{{ route('products.destroy', $item->id) }}" id="form-delete{{ $item->id }}" method="POST">
                         @csrf
                         @method('delete')
                         <button class=" btn btn-delete btn-danger" type="submit" data-id="{{ $item->id }}">Delete</button>
                     </form>
-                    
+                    {{-- @endcan --}}
                 </td>
             </tr>
             @endforeach

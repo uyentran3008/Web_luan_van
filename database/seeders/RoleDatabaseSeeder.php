@@ -40,18 +40,43 @@ class RoleDatabaseSeeder extends Seeder
             ['name' => 'show-category','display_name'=>' Show category', 'group'=>'Category'],
             ['name' => 'delete-category','display_name'=>' Delete category', 'group'=>'Category'],
 
-            ['name' => 'create-product','display_name'=>' Create product', 'group'=>'product'],
-            ['name' => 'update-product','display_name'=>' Update product', 'group'=>'product'],
-            ['name' => 'show-product','display_name'=>' Show product', 'group'=>'product'],
-            ['name' => 'delete-product','display_name'=>' Delete product', 'group'=>'product'],
+            ['name' => 'create-product','display_name'=>' Create product', 'group'=>'Product'],
+            ['name' => 'update-product','display_name'=>' Update product', 'group'=>'Product'],
+            ['name' => 'show-product','display_name'=>' Show product', 'group'=>'Product'],
+            ['name' => 'delete-product','display_name'=>' Delete product', 'group'=>'Product'],
 
-            ['name' => 'create-coupon','display_name'=>' Create coupon', 'group'=>'coupon'],
-            ['name' => 'update-coupon','display_name'=>' Update coupon', 'group'=>'coupon'],
-            ['name' => 'show-coupon','display_name'=>' Show coupon', 'group'=>'coupon'],
-            ['name' => 'delete-coupon','display_name'=>' Delete coupon', 'group'=>'coupon'],
+            ['name' => 'create-coupon','display_name'=>' Create coupon', 'group'=>'Coupon'],
+            ['name' => 'update-coupon','display_name'=>' Update coupon', 'group'=>'Coupon'],
+            ['name' => 'show-coupon','display_name'=>' Show coupon', 'group'=>'Coupon'],
+            ['name' => 'delete-coupon','display_name'=>' Delete coupon', 'group'=>'Coupon'],
 
-            ['name' => 'list-order','display_name'=>'list order ', 'group'=>'orders'],
-            ['name' => 'update-order-stattus','display_name'=>' Update oder status', 'group'=>'orders'],
+            ['name' => 'create-size','display_name'=>' Create size', 'group'=>'Size'],
+            ['name' => 'update-size','display_name'=>' Update size', 'group'=>'Size'],
+            ['name' => 'show-size','display_name'=>' Show size', 'group'=>'Size'],
+            ['name' => 'delete-size','display_name'=>' Delete size', 'group'=>'Size'],
+
+            ['name' => 'create-supplier','display_name'=>' Create supplier', 'group'=>'Supplier'],
+            ['name' => 'update-supplier','display_name'=>' Update supplier', 'group'=>'Supplier'],
+            ['name' => 'show-supplier','display_name'=>' Show supplier', 'group'=>'Supplier'],
+            ['name' => 'delete-supplier','display_name'=>' Delete supplier', 'group'=>'Supplier'],
+
+            ['name' => 'create-material','display_name'=>' Create material', 'group'=>'Material'],
+            ['name' => 'update-material','display_name'=>' Update material', 'group'=>'Material'],
+            ['name' => 'show-material','display_name'=>' Show material', 'group'=>'Material'],
+            ['name' => 'delete-material','display_name'=>' Delete material', 'group'=>'Material'],
+
+            ['name' => 'create-import','display_name'=>' Create import', 'group'=>'Import'],
+            ['name' => 'update-import','display_name'=>' Update import', 'group'=>'Import'],
+            ['name' => 'show-import','display_name'=>' Show import', 'group'=>'Import'],
+            ['name' => 'delete-import','display_name'=>' Delete import', 'group'=>'Import'],
+
+            ['name' => 'create-export','display_name'=>' Create export', 'group'=>'Export'],
+            ['name' => 'update-export','display_name'=>' Update export', 'group'=>'Export'],
+            ['name' => 'show-export','display_name'=>' Show export', 'group'=>'Export'],
+            ['name' => 'delete-export','display_name'=>' Delete export', 'group'=>'Export'],
+
+            ['name' => 'list-order','display_name'=>'list order', 'group'=>'orders'],
+            ['name' => 'update-order-status','display_name'=>' Update order status', 'group'=>'orders'],
         ];
         foreach($permissions as $item){
             Permisson::updateOrCreate($item);

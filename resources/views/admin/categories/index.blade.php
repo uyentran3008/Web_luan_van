@@ -26,12 +26,16 @@
                         <td>{{ $item->name}}</td>
                         <td>{{ $item->parent_name }}</td>
                         <td>
+                            @can('update-category')
                             <a href="{{  route('categories.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                            @endcan
+                            @can('delete-category')
                             <form action="{{ route('categories.destroy', $item->id) }}" id="form-delete{{ $item->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-delete btn-danger" data-id={{$item->id  }}>Delete</button>
                             </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

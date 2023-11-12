@@ -34,7 +34,7 @@ class Cart extends Model
 
         if(!$cart)
         {
-            $cart = $this->cart->create(['user_id' => $userId]);
+            $cart = $this->create(['user_id' => $userId]);
         }
         return $cart;
     }
