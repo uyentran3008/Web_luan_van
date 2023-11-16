@@ -32,16 +32,16 @@
                         <td>{{ $item->phone }}</td>
                         
                         <td>
-                            {{-- @can('update-user') --}}
+                            @can('update-user')
                             <a href="{{ route('users.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                            {{-- @endcan --}}
-                            {{-- @can('delete-user') --}}
+                            @endcan
+                            @can('delete-user')
                             <form action="{{ route('users.destroy', $item->id) }}" id="form-delete{{ $item->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-delete btn-danger" type="submit" data-id="{{ $item->id }}">DELETE</button>
                             </form>
-                            {{-- @endcan --}}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

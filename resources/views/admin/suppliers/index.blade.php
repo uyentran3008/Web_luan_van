@@ -37,10 +37,10 @@
                         <td>{{ $item->description }}</td>
 
                         <td>
-                            {{-- @can('update-supplier') --}}
+                            @can('update-supplier')
                             <a href="{{ route('suppliers.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                            {{-- @endcan --}}
-                            {{-- @can('delete-supplier') --}}
+                            @endcan
+                            @can('delete-supplier')
                             <form action="{{ route('suppliers.destroy', $item->id) }}" id="form-delete{{ $item->id }}"
                                 method="post">
                                 @csrf
@@ -49,7 +49,7 @@
                             </form>
                             
                             <button class="btn btn-delete btn-danger" data-id={{ $item->id }}>Delete</button>
-                            {{-- @endcan --}}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

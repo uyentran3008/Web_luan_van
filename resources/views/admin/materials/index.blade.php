@@ -37,8 +37,10 @@
                     <td>{{ $item->inventory_number }}</td>
 
                     <td>
+                        @can('update-material')
                         <a href="{{ route('materials.edit',$item->id) }}" class="btn btn-warning">Edit</a>
-
+                        @endcan
+                        @can('delete-material')
                         <form action="{{ route('materials.destroy', $item->id) }}" id="form-delete{{ $item->id }}"
                             method="post">
                             @csrf
@@ -47,7 +49,7 @@
                         </form>
 
                         <button class="btn btn-delete btn-danger" data-id={{ $item->id }}>Delete</button>
-
+                        @endcan
                     </td>
                 </tr>
             @endforeach

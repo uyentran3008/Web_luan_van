@@ -23,9 +23,13 @@ class Order extends Model
         
     ];
 
-    public function getWithPaginateBy($userId)
+    // public function getWithPaginateBy($userId)
+    // {
+    //     return $this->whereUserId($userId)->latest('id')->paginate(10);
+    // }
+    public function user()
     {
-        return $this->whereUserId($userId)->latest('id')->paginate(10);
+        return $this->belongsTo(User::class);
     }
 
 }

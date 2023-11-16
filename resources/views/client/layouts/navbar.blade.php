@@ -37,7 +37,7 @@
                 </div>
                 {{-- <a href="" class="nav-item nav-link">Menu</a> --}}
                 <a href="{{ route('client.orders.index') }}" class="nav-item nav-link">Order</a>
-                <a href="" class="nav-item nav-link">Contact</a>
+                {{-- <a href="" class="nav-item nav-link">Contact</a> --}}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
                     <div class="dropdown-menu text-capitalize">

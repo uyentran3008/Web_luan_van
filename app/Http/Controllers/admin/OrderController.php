@@ -21,7 +21,9 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders =  $this->order->getWithPaginateBy(auth()->user()->id);
+        // $orders =  $this->order->getWithPaginateBy(auth()->user()->id);
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        // $orders = $this->order->get();
         // $order = $this->order->get('id');
         return view('admin.orders.index', compact('orders'));
     }

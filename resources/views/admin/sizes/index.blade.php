@@ -25,14 +25,14 @@
                         <td>{{ $size->name }}</td>
                         
                         <td>
-                            {{-- <a href="{{ route('sizes.edit', $size->id) }}" class="btn btn-warning">Edit</a> --}}
-                            {{-- @can('delete-size') --}}
+                            <a href="{{ route('sizes.edit', $size->id) }}" class="btn btn-warning">Edit</a>
+                            @can('delete-size')
                             <form action="{{ route('sizes.destroy', $size->id) }}" id="form-delete{{ $size->id }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-delete btn-danger" type="submit" data-id="{{ $size->id }}">DELETE</button>
                             </form>
-                            {{-- @endcan --}}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

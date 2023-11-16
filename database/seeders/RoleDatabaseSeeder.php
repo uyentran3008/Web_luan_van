@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Permisson;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +24,14 @@ class RoleDatabaseSeeder extends Seeder
         foreach($roles as $role){
             Role::updateOrCreate($role);
         }
+
+        $superAdmin = User::whereEmail('admin@gmail.com')->first();
+
+        if(!$superAdmin)
+        {
+            $superAdmin = User::factory()->create(['email' => 'admin@gmail.com', 'password' => 'tranuyen']);
+        }
+        $superAdmin->assignRole('super-admin');
 
         $permissions = [
             ['name' => 'create-user','display_name'=>' Create user', 'group'=>'User'],
@@ -58,7 +67,7 @@ class RoleDatabaseSeeder extends Seeder
             ['name' => 'create-supplier','display_name'=>' Create supplier', 'group'=>'Supplier'],
             ['name' => 'update-supplier','display_name'=>' Update supplier', 'group'=>'Supplier'],
             ['name' => 'show-supplier','display_name'=>' Show supplier', 'group'=>'Supplier'],
-            ['name' => 'delete-supplier','display_name'=>' Delete supplier', 'group'=>'Supplier'],
+            ['name' => 'delete-supplier','display_name'=>' Delete supplier', 'group'=>'Suplier'],
 
             ['name' => 'create-material','display_name'=>' Create material', 'group'=>'Material'],
             ['name' => 'update-material','display_name'=>' Update material', 'group'=>'Material'],

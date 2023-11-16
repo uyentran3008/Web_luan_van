@@ -41,7 +41,7 @@
                                 <td>{{ $item->id }}</td>
 
                                 <td>
-
+                                    
                                     <div class="input-group input-group-static mb-4">
                                         <select name="status" class="form-control select-status"
                                             data-action="{{ route('admin.orders.update_status', $item->id)}}">
@@ -68,7 +68,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    {{ $orders->links() }}
+                    {{-- {{ $orders->links() }} --}}
                 </div>
             </div>
 

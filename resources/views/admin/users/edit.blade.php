@@ -58,8 +58,8 @@
             <div class="input-group input-group-static mb-4">
                 <label name="group" class="ms-0">Gender</label>
                 <select name="gender" class="form-control" value={{$user->gender}}>
-                    <option value="male">Male</option>
-                    <option value="fe-male">FeMale</option>
+                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>FeMale</option>
 
                 </select>
 
