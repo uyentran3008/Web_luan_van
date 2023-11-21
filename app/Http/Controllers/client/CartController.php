@@ -264,6 +264,7 @@ class CartController extends Controller
         //     }
         // }
         $cart = $this->cart->firtOrCreateBy(auth()->user()->id);
+        
         $cart->products()->delete();
         Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
         return redirect()->route('client.carts.index');

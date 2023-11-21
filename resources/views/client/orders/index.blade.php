@@ -23,7 +23,7 @@
                           <th>Customer Address</th>
                           <th>Note</th>
                           <th>Payment</th>
-                          <th>Action</th>
+                          {{-- <th>Action</th> --}}
 
 
                       </tr>
@@ -42,7 +42,7 @@
                               <td>{{ $item->customer_address }}</td>
                               <td>{{ $item->note }}</td>
                               <td>{{ $item->payment }}</td>
-                              <td>
+                              {{-- <td>
                                   @if ($item->status == 'pending')
                                       <form action="{{ route('client.orders.cancel', $item->id) }}"
                                           id="form-cancel{{ $item->id }}" method="post" >
@@ -52,7 +52,7 @@
                                       </form>
                                   @endif
 
-                              </td>
+                              </td> --}}
                           </tr>
                       @endforeach
                   </table>

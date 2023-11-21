@@ -167,7 +167,7 @@ Route::prefix('exports')->controller(ExportMaterialController::class)->name('exp
 
 
 Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
-Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status')->middleware('update-order-status');
+Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status');
 
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

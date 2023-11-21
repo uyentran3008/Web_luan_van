@@ -127,6 +127,10 @@
                                 <input type="radio" class="custom-control-input"  value="paypal" name="payment">
                                 <label class="custom-control-label">Paypal</label>
                             </div> --}}
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input"  value="VNPay" name="payment">
+                                <label class="form-check-label">VNPay</label>
+                            </div>
                         </div>
 
                     </div>

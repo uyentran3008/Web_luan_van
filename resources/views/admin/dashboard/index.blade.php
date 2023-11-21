@@ -17,8 +17,8 @@
         <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><a href="{{route('products.index') }}">View Detail</a></span></p>
       </div>
     </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+</div>
+<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
     <div class="card">
       <div class="card-header p-3 pt-2">
         <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
@@ -34,8 +34,8 @@
         <p class="mb-0"><span class="text-success text-sm font-weight-bolder"><a href="{{route('categories.index') }}">View Detail</a></span></p>
       </div>
     </div>
-  </div>
-  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+</div>
+<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
     <div class="card">
       <div class="card-header p-3 pt-2">
         <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
@@ -51,8 +51,8 @@
         <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"><a href="{{route('users.index') }}">View Detail</a></span></p>
       </div>
     </div>
-  </div>
-  <div class="col-xl-3 col-sm-6">
+</div>
+<div class="col-xl-3 col-sm-6">
     <div class="card">
       <div class="card-header p-3 pt-2">
         <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
@@ -75,7 +75,7 @@
 
   <form method="get">
       <label for="selected_month">Select Month:</label>
-      <select name="selected_month" id="selected_month">
+      <select name="selected_month" id="selected_month" style="    width: 150px;height: 50px;margin: 10px;padding:10px">
           @for ($month = 1; $month <= 12; $month++)
               <option value="{{ $month }}" {{ $selectedMonth == $month ? 'selected' : '' }}>
                   {{ Carbon\Carbon::createFromDate(null, $month)->monthName }}
@@ -86,8 +86,79 @@
   </form>
 
   @if ($totalInputCost !== null && $totalExportCost !== null)
-            <p style="font-size: 20px; color: black">Total Raw Material Import Cost in {{ Carbon\Carbon::createFromDate(null, $selectedMonth)->monthName }}: {{ $totalInputCost }} VNĐ</p>
-            <p style="font-size: 20px; color: black">Total Raw Material Export Cost in {{ Carbon\Carbon::createFromDate(null, $selectedMonth)->monthName }}: {{ $totalExportCost }} VNĐ</p>
+    {{-- <p style="font-size: 20px; color: black">Total Raw Material Import Cost in {{ Carbon\Carbon::createFromDate(null, $selectedMonth)->monthName }}: {{ $totalInputCost }} VNĐ</p>
+    <p style="font-size: 20px; color: black">Total Raw Material Export Cost in {{ Carbon\Carbon::createFromDate(null, $selectedMonth)->monthName }}: {{ $totalExportCost }} VNĐ</p> --}}
+    <div class="row"  style="margin-top: 20px">
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">weekend</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Total Import Material</p>
+            <h4 class="mb-0">{{ $totalInputCost }} VNĐ</h4>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Total Export Material</p>
+            <h4 class="mb-0">{{ $totalExportCost }} VNĐ</h4>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize"> Total Order Value</p>
+            <h4 class="mb-0">{{ $monthlyRevenue }} VNĐ</h4>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-danger text-sm font-weight-bolder"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+      <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">weekend</i>
+          </div>
+          <div class="text-end pt-1">
+            <p class="text-sm mb-0 text-capitalize">Profits</p>
+            <h4 class="mb-0">{{ $monthlyRevenue - $totalExportCost }} VNĐ</h4>
+          </div>
+        </div>
+        <hr class="dark horizontal my-0">
+        <div class="card-footer p-3">
+          <p class="mb-0"><span class="text-success text-sm font-weight-bolder"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         @else
             <p>No data available for the selected month.</p>
         @endif
@@ -97,10 +168,10 @@
 
   <form method="get">
       <label for="start_date">Start Date:</label>
-      <input type="date" name="start_date" value="{{ $startDate }}">
+      <input type="date" name="start_date" value="{{ $startDate }}" style="width: 150px;height: 50px;margin: 10px;padding:10px">
 
       <label for="end_date">End Date:</label>
-      <input type="date" name="end_date" value="{{ $endDate }}">
+      <input type="date" name="end_date" value="{{ $endDate }}" style="width: 150px;height: 50px;margin: 10px;padding:10px">
 
       <button type="submit" class="btn btn-primary">Show Statistics</button>
   </form>
@@ -109,30 +180,30 @@
       <p>No data available for the selected date range.</p>
   @else
       {{-- Example: Display data in a table --}}
-      <table class="table table-hover">
-          <thead>
-              <tr>
-                  <th>Date</th>
+      <table class="table table-hover table-dark" >
+          <thead >
+              <tr >
+                  <th >Date</th>
                   <th>Order Count</th>
                   <th>Total Revenue</th>
               </tr>
           </thead>
           <tbody>
               @foreach ($statisticData as $data)
-                  <tr>
+                  <tr >
                       <td>{{ $data->date }}</td>
                       <td>{{ $data->order_count }}</td>
-                      <td>{{ $data->total_revenue }}</td>
+                      <td>{{ $data->total_revenue }} VNĐ</td>
                   </tr>
               @endforeach
           </tbody>
-          <thead>
+          
             <tr>
                 <th>Total</th>
                 <th>{{ $totalOrder }}</th>
-                <th>{{ $totalRevenue }}</th>
+                <th>{{ $totalRevenue }} VNĐ</th>
             </tr>
-        </thead>
+        
       </table>
 
       {{-- Example: Display data in a chart (using Chart.js) --}}

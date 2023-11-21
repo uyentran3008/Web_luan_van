@@ -45,6 +45,10 @@ class DashboardController extends Controller
         ->join('materials', 'export_materials.material_id', '=', 'materials.id')
         ->whereMonth('export_materials.export_date', $selectedMonth)
         ->sum(DB::raw('export_materials.export_quantity * materials.price'));
+        $monthlyRevenue = DB::table('orders')
+        ->whereMonth('created_at', $selectedMonth)
+        ->sum('total');
+        
 
         $startDate = $request->input('start_date', now()->subMonth()->format('Y-m-d'));
         $endDate = $request->input('end_date', now()->format('Y-m-d'));
@@ -60,7 +64,7 @@ class DashboardController extends Controller
             ->whereBetween('created_at', [$startDate, $endDate])
             ->count();
         
-        return view('admin.dashboard.index', compact('countProduct','countUser','countCategory','countOrder','startDate', 'endDate','statisticData','selectedMonth','totalInputCost','totalExportCost','totalRevenue','totalOrder'));
+        return view('admin.dashboard.index', compact('countProduct','countUser','countCategory','countOrder','startDate', 'endDate','statisticData','selectedMonth','totalInputCost','totalExportCost','totalRevenue','totalOrder','monthlyRevenue'));
     }
 
     /**

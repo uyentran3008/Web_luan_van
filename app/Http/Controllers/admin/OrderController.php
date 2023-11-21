@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -13,10 +19,11 @@ class OrderController extends Controller
      * Display a listing of the resource.
      */
     protected $order;
-
-    public function __construct(Order $order)
+  
+    public function __construct(Order $order )
     {
         $this->order = $order;
+
     }
 
     public function index()
@@ -38,6 +45,7 @@ class OrderController extends Controller
     }
 
 
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -57,9 +65,18 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($orderId)
     {
-        //
+        $orderUserId = Order::where('id', $orderId)->value('user_id');
+        $orderDetails = DB::table('carts')
+        ->join('orders', 'carts.user_id', '=', 'orders.user_id')
+        ->where('carts.user_id', $orderUserId)
+        ->where('orders.id', $orderId)
+        ->select('orders.*', 'carts.id as cart_id')
+        ->first();
+        dd($orderDetails);
+
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
