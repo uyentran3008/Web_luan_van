@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function(){
     Route::get('carts', [CartController::class, 'index'])->name('client.carts.index');
     Route::post('update-quantity-product-in-cart/{cart_product_id}', [CartController::class, 'updateQuantityProduct'])->name('client.carts.update_product_quantity');
     Route::post('remove-product-in-cart/{cart_product_id}', [CartController::class, 'removeProductInCart'])->name('client.carts.remove_product');
-    // Route::post('apply-coupon', [CartController::class, 'applyCoupon'])->name('client.carts.apply_coupon');
+    Route::post('apply-coupon', [CartController::class, 'applyCoupon'])->name('client.carts.apply_coupon');
     Route::get('checkout', [CartController::class, 'checkout'])->name('client.checkout.index')->middleware('user.can_checkout_cart');
     Route::post('process-checkout', [CartController::class, 'processCheckout'])->name('client.checkout.proccess')->middleware('user.can_checkout_cart');
     Route::get('list-orders', [OrderController::class, 'index'])->name('client.orders.index');
@@ -61,13 +61,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route::resource('roles', RoleController::class);
 Route::prefix('roles')->controller(RoleController::class)->name('roles.')->group(function(){
-    Route::get('/', 'index')->name('index')->middleware('show-role');
-    Route::post('/', 'store')->name('store')->middleware('create-role');
-    Route::get('/create', 'create')->name('create')->middleware('create-role');
-    Route::get('/{coupon}', 'show')->name('show')->middleware('show-role');
-    Route::put('/{coupon}', 'update')->name('update')->middleware('update-role');
-    Route::delete('/{coupon}', 'destroy')->name('destroy')->middleware('delete-role');
-    Route::get('/{coupon}/edit', 'edit')->name('edit')->middleware('update-role');
+    Route::get('/', 'index')->name('index')->middleware('role:super-admin');
+    Route::post('/', 'store')->name('store')->middleware('role:super-admin');
+    Route::get('/create', 'create')->name('create')->middleware('role:super-admin');
+    Route::get('/{coupon}', 'show')->name('show')->middleware('role:super-admin');
+    Route::put('/{coupon}', 'update')->name('update')->middleware('role:super-admin');
+    Route::delete('/{coupon}', 'destroy')->name('destroy')->middleware('role:super-admin');
+    Route::get('/{coupon}/edit', 'edit')->name('edit')->middleware('role:super-admin');
 });
 
 // Route::resource('users', UserController::class);
@@ -168,6 +168,6 @@ Route::prefix('exports')->controller(ExportMaterialController::class)->name('exp
 
 Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
 Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status');
-
+Route::get('/order/{id}',  [AdminOrderController::class, 'show'])->name('admin.orders.show');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

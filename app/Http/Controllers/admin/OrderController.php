@@ -67,14 +67,8 @@ class OrderController extends Controller
      */
     public function show($orderId)
     {
-        $orderUserId = Order::where('id', $orderId)->value('user_id');
-        $orderDetails = DB::table('carts')
-        ->join('orders', 'carts.user_id', '=', 'orders.user_id')
-        ->where('carts.user_id', $orderUserId)
-        ->where('orders.id', $orderId)
-        ->select('orders.*', 'carts.id as cart_id')
-        ->first();
-        dd($orderDetails);
+        $order = Order::with('productOrders')->find($orderId);
+        
 
         return view('admin.orders.show', compact('order'));
     }

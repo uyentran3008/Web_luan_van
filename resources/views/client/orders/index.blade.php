@@ -2,13 +2,20 @@
   @extends('client.layouts.app')
   @section('title', 'Home')
   @section('content')
+  <div class="d-inline-flex" style="margin-left: 40px">
+    <div class="row">
+        <p class="m-0"><a href="{{ route('client.home') }}">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Order List</p>
+    </div>
+</div>
       <div class="container-fluid ">
           @if (session('message'))
               <h1 class="text-primary">{{ session('message') }}</h1>
           @endif
 
 
-          <div class="col">
+          <div class="col" style="padding-top: 40px">
               <div>
                   <table class="table table-hover">
                     <tr class="" style="text-align: center">Order List</tr>
@@ -23,6 +30,7 @@
                           <th>Customer Address</th>
                           <th>Note</th>
                           <th>Payment</th>
+                          <th>Created at</th>
                           {{-- <th>Action</th> --}}
 
 
@@ -42,6 +50,7 @@
                               <td>{{ $item->customer_address }}</td>
                               <td>{{ $item->note }}</td>
                               <td>{{ $item->payment }}</td>
+                              <th>{{ $item->created_at }}</th>
                               {{-- <td>
                                   @if ($item->status == 'pending')
                                       <form action="{{ route('client.orders.cancel', $item->id) }}"

@@ -10,6 +10,7 @@ use App\Models\CartProduct;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductOrder;
 use App\Models\Size;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ class CartController extends Controller
         // dd(auth()->user()->id);
         // dd($this->cart);
         $carts = $this->cart->firtOrCreateBy(auth()->user()->id)->load('products');
+        $coupons = Coupon::valid()->get();
         // dd($cartId);
         // $cartId = Cart::where('user_id', auth()->user()->id)->value('id');
         // dd($cartId);
@@ -56,7 +58,7 @@ class CartController extends Controller
         
         // $cartProduct = $cartId->cartProducts()->find($cartProducts);
         
-        return view('client.carts.index', compact(  'carts' ));
+        return view('client.carts.index', compact(  'carts', 'coupons' ));
 
     }
 
@@ -212,30 +214,35 @@ class CartController extends Controller
         ], Response::HTTP_OK);
     }
 
-    // public function applyCoupon(Request $request)
+    // public function showCoupon()
     // {
-
-    //     $name = $request->input('coupon_code');
-
-    //     $coupon =  $this->coupon->firstWithExperyDate($name, auth()->user()->id);
-
-    //     if($coupon)
-    //     {
-    //         $message = 'Áp Mã giảm giá thành công !';
-    //         Session::put('coupon_id', $coupon->id);
-    //         Session::put('discount_amount_price', $coupon->value);
-    //         Session::put('coupon_code' , $coupon->name);
-
-    //     }else{
-
-    //         Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
-    //         $message = 'Mã giảm giá không tồn tại hoặc hết hạn!';
-    //     }
-
-    //     return redirect()->route('client.carts.index')->with([
-    //         'message' => $message,
-    //     ]);
+    //     $coupons = $this->coupon->all();
+    //     return view('admin.cart.index', compact('coupons'));
     // }
+    public function applyCoupon(Request $request)
+    {
+
+        $name = $request->input('coupon_code');
+
+        $coupon =  $this->coupon->firstWithExperyDate($name, auth()->user()->id);
+
+        if($coupon)
+        {
+            $message = 'Áp Mã giảm giá thành công !';
+            Session::put('coupon_id', $coupon->id);
+            Session::put('discount_amount_price', $coupon->value);
+            Session::put('coupon_code' , $coupon->name);
+
+        }else{
+
+            Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
+            $message = 'Mã giảm giá không tồn tại hoặc hết hạn!';
+        }
+
+        return redirect()->route('client.carts.index')->with([
+            'message' => $message,
+        ]);
+    }
 
 
 
@@ -253,18 +260,28 @@ class CartController extends Controller
         $dataCreate = $request->all();
         $dataCreate['user_id'] = auth()->user()->id;
         $dataCreate['status'] = 'pending';
-        $this->order->create($dataCreate);
-        // $couponID = Session::get('coupon_id');
-        // if($couponID)
-        // {
-        //     $coupon =  $this->coupon->find(Session::get('coupon_id'));
-        //     if($coupon)
-        //     {
-        //         $coupon->users()->attach(auth()->user()->id, ['value' => $coupon->value]);
-        //     }
-        // }
+        $order = $this->order->create($dataCreate);
+        $couponID = Session::get('coupon_id');
+        if($couponID)
+        {
+            $coupon =  $this->coupon->find(Session::get('coupon_id'));
+            if($coupon)
+            {
+                $coupon->users()->attach(auth()->user()->id, ['value' => $coupon->value]);
+            }
+        }
         $cart = $this->cart->firtOrCreateBy(auth()->user()->id);
-        
+        // dd($cart);
+        foreach ($cart->products as $product) {
+            
+            ProductOrder::create([
+                'size_id' => $product->size->id,
+                'product_id' => $product->product->id,
+                'product_quantity' => $product->product_quantity,
+                'order_id' => $order->id,
+                'user_id' => $order->user->id,
+            ]);
+        }
         $cart->products()->delete();
         Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
         return redirect()->route('client.carts.index');

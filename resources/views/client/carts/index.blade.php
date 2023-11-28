@@ -1,7 +1,14 @@
 @extends('client.layouts.app')
 @section('title', 'Cart')
-  @section('content')
-      <div class="row px-xl-5">
+@section('content')
+<div class="d-inline-flex" style="margin-left: 40px">
+    <div class="row">
+        <p class="m-0"><a href="{{ route('client.home') }}">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Cart Detail</p>
+    </div>
+</div>
+      <div class="row px-xl-5" style="padding-top: 40px">
           <div class="col-lg-8 table-responsive mb-5">
               <table class="table table-bordered text-center mb-0">
                   <thead class="bg-secondary text-light">
@@ -92,7 +99,8 @@
               </table>
           </div>
           <div class="col-lg-4">
-              {{-- <form class="mb-5" method="POST" action="{{  route('client.carts.apply_coupon')}}">
+              <form class="mb-5" method="POST" action="{{  route('client.carts.apply_coupon')}}">
+
                   @csrf
                   <div class="input-group">
                       <input type="text" class="form-control p-4" value="{{ Session::get('coupon_code') }}"
@@ -102,7 +110,47 @@
                           <button class="btn btn-primary">Apply Coupon</button>
                       </div>
                   </div>
-              </form> --}}
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#discountCodesModal" style="padding: 10px; margin: 10px">
+                    View coupon list
+                </button>
+                <div class="modal fade" id="discountCodesModal" tabindex="-1" role="dialog" aria-labelledby="discountCodesModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="discountCodesModalLabel">Coupon List <sup>(*)</sup>
+                                    
+                                </h5> 
+                                                              
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                
+                            </div>
+                            <div>
+                                <i>                                   
+                                    (*)See the list of discount codes and enter the discount code name into the coupon code 
+                                </i>
+                            </div> 
+                            
+                            
+                            <div class="modal-body">
+                                <!-- Hiển thị danh sách mã giảm giá -->
+                                <ul>
+                                    @foreach($coupons as $coupon)
+                                        <li class="discount-code" data-code="{{ $coupon->name }}">
+                                            {{ $coupon->name }} - {{ $coupon->value }} VNĐ
+                                            
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </form>
               <div class="card border-secondary mb-5">
                   <div class="card-header bg-secondary border-0">
                       <h4 class="font-weight-semi-bold m-0 text-light">Cart Summary</h4>
@@ -118,7 +166,7 @@
                               <h6 class="font-weight-medium">Coupon </h6>
                               <h6 class="font-weight-medium coupon-div"
                                   data-price="{{ session('discount_amount_price') }}">
-                                  ${{ session('discount_amount_price') }}</h6>
+                                  {{ session('discount_amount_price') }} VNĐ</h6>
                           </div>
                       @endif
 
@@ -138,7 +186,17 @@
 @section('scripts')
   <script>   
     //   try{
+       
         $(function() {
+            getTotalValue()
+
+              function getTotalValue() {
+                  let total = $('.total-price').data('price')
+                  let couponPrice = $('.coupon-div')?.data('price') ?? 0;
+                  $('.total-price-all').text(`${total - couponPrice} VNĐ `)
+
+              }
+
           $(document).on('click', '.btn-remove-product', function(e) {
               let url = $(this).data('action')
               confirmDelete()

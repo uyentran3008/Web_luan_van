@@ -33,6 +33,9 @@ class Coupon extends Model
         ->whereDate('expery_date', '>=', Carbon::now())->first();
     }
 
-
+    public function scopeValid($query)
+    {
+        return $query->where('expery_date', '>', now());
+    }
 
 }

@@ -1,6 +1,13 @@
 @extends('client.layouts.app')
 @section('title', 'Cart')
 @section('content')
+<div class="d-inline-flex" style="margin-left: 40px">
+    <div class="row">
+        <p class="m-0"><a href="{{ route('client.home') }}">Home</a></p>
+        <p class="m-0 px-2">/</p>
+        <p class="m-0">Order</p>
+    </div>
+</div>
     <div class="container-fluid pt-5">
         <form class="row px-xl-5" method="POST" action="{{ route('client.checkout.proccess') }}">
             @csrf
@@ -100,7 +107,7 @@
                                 <h6 class="font-weight-medium">Coupon </h6>
                                 <h6 class="font-weight-medium coupon-div"
                                     data-price="{{ session('discount_amount_price') }}">
-                                    ${{ session('discount_amount_price') }}</h6>
+                                    {{ session('discount_amount_price') }} VNĐ</h6>
                             </div>
                         @endif
 
@@ -152,10 +159,10 @@
 
             function getTotalValue() {
                 let total = $('.total-price').data('price')
-                // let couponPrice = $('.coupon-div')?.data('price') ?? 0;
+                let couponPrice = $('.coupon-div')?.data('price') ?? 0;
                 let shiping = $('.shipping').data('price')
-                $('.total-price-all').text(`${total + shiping }VNĐ`)
-                $('#total').val(total + shiping )
+                $('.total-price-all').text(`${total + shiping  - couponPrice}VNĐ`)
+                $('#total').val(total + shiping  - couponPrice )
             }
 
         });

@@ -33,7 +33,7 @@
                             <th>Note</th>
                             <th>Payment</th>
                             <th>Time Complele</th>
-                            
+                            <th>Action</th>
                         </tr>
 
                         @foreach ($orders as $item)
@@ -65,7 +65,9 @@
                                 <td>{{ $item->note }}</td>
                                 <td>{{ $item->payment }}</td>
                                 <td>{{ $item->updated_at->format('d/m/Y') }}</td>
-                                
+                                <td>
+                                    <a href="{{ route('admin.orders.show', $item->id) }}" class="btn btn-primary">Show</a>
+                                </td>
                             </tr>
                         @endforeach
                     </table>
