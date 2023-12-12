@@ -205,7 +205,7 @@
                           let cart = res.cart;
                           let cartProductId = res.product_cart_id;
                           $('#productCountCart').text(cart.product_count)
-                          $('.total-price').text(`$${cart.total_price}`).data('price', cart
+                          $('.total-price').text(`${cart.total_price}`).data('price', cart
                               .product_count)
                           $(`#row-${cartProductId}`).remove();
                       })
@@ -232,10 +232,10 @@
                     } 
                     else {
                         $(`#cartProductPrice${cartProductId}`).html(
-                            `$${res.cart_product_price}`);
+                            `${res.cart_product_price} VNĐ`);
                     }
                     cartProductPrice
-                    $('.total-price').text(`$${cart.total_price}`)
+                    $('.total-price').text(`${cart.total_price}`)
                     Swal.fire({
                         position: "top-end",
                         icon: "success",

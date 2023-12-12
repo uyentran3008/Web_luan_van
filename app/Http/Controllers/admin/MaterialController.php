@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Materials\UpdateMaterialRequest;
+use App\Models\ImportMaterial;
 use App\Models\Material;
 use Illuminate\Http\Request;
 
@@ -13,13 +14,16 @@ class MaterialController extends Controller
      * Display a listing of the resource.
      */
     protected $material;
-    public function __construct(Material $material)
+    protected $import;
+    public function __construct(Material $material,ImportMaterial $import)
     {
         $this->material = $material;
+        $this->import = $import;
     }
     public function index()
     {
         $materials = $this->material->latest('id')->paginate(5);
+        // $imports = ImportMaterial::where('material_id', $materials)->latest()->first();
         return view('admin.materials.index', compact('materials'));
     }
 
@@ -59,8 +63,8 @@ class MaterialController extends Controller
     public function edit(string $id)
     {
         $material = $this->material->findOrFail($id);
-        
-        
+        // $import = ImportMaterial::where('material_id', $id)->latest()->first();
+        // $import = $material->latestImport()->quantity_entered;
         return view('admin.materials.edit', compact('material'));
     }
 

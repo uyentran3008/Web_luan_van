@@ -51,7 +51,7 @@
             }
         });
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     {{-- <script src="{{ asset('client/js/main.js') }}"></script> --}}
     <!-- Template Javascript -->
     <script src="{{ asset('client/js/main.js') }}"></script>

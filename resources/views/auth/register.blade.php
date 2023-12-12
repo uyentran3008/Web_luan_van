@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body"> --}}
+                    <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;text-align: center" >Sign Up</h1>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         {{-- <div class="row mb-3">

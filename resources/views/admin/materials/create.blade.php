@@ -44,7 +44,7 @@
 
             <div class="input-group input-group-static mb-4">
                 <label>Inventory Number</label>
-                <input type="number" value="{{ old('inventory_number') }}" name="inventory_number" class="form-control">
+                <input type="number" value="0" name="inventory_number" class="form-control">
 
                 @error('inventory_number')
                     <span class="text-danger"> {{ $message }}</span>

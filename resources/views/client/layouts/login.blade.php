@@ -24,7 +24,7 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-                        <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;text-align: center" >Sign in</h1>
+                        {{-- <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;text-align: center" >Sign in</h1> --}}
                         @yield('content')
                     
                     </div>

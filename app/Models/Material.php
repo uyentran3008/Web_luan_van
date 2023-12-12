@@ -24,4 +24,14 @@ class Material extends Model
     {
         return $this->hasMany(ExportMaterial::class);
     }
+
+    public function latestImport()
+    {
+        return $this->hasOne(ImportMaterial::class)->latest();
+    }
+
+    public function latestExport()
+    {
+        return $this->hasOne(ExportMaterial::class)->latest();
+    }
 }

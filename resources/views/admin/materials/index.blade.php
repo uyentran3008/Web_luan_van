@@ -23,7 +23,8 @@
                 <th>Type</th>
                 <th>Price</th>
                 <th>Inventory Number</th>
-
+                <th>Quantity Entered</th>
+                <th>Export Quantity</th>
                 <th>Action</th>
             </tr>
 
@@ -33,9 +34,11 @@
                     <td>{{ $item->name }}</td>
 
                     <td>{{ $item->unit_of_measure }}</td>
-                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->price }} VNĐ</td>
+                    
+                    <td>{{  $item->import ? $item->import->sum('quantity_entered') : 0  }}</td>
+                    <td>{{ $item->export ? $item->export->sum('export_quantity') : 0 }}</td>
                     <td>{{ $item->inventory_number }}</td>
-
                     <td>
                         @can('update-material')
                         <a href="{{ route('materials.edit',$item->id) }}" class="btn btn-warning">Edit</a>
