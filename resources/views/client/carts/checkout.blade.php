@@ -76,14 +76,14 @@
                                     style="
                                         {{ $item->product->sale ? 'text-decoration: line-through' : '' }};
                                                                 ">
-                                    {{  $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price * $item->product_quantity}} VNĐ
+                                    {{number_format(  $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price * $item->product_quantity)}} VNĐ
                                 </p>
 
                                 @if ($item->product->sale)
                                     <p
                                         style="
                                                                                                                                                                                                                                                                                                                                                                                                                             ">
-                                        {{ $item->product_quantity * ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale)) }} VNĐ
+                                        {{number_format( $item->product_quantity * ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale)) )}} VNĐ
                                     </p>
                                 @endif
 
@@ -93,12 +93,12 @@
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
                             <h6 class="font-weight-medium total-price" data-price="{{ $cart->total_price }}">
-                                {{ $cart->total_price }} VNĐ</h6>
+                                {{number_format( $cart->total_price) }} VNĐ</h6>
 
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium shipping" data-price="20000">20000 VNĐ</h6>
+                            <h6 class="font-weight-medium shipping" data-price="20000">{{  number_format(20000 )}}VNĐ</h6>
                             <input type="hidden" value="20000" name="ship">
 
                         </div>
@@ -142,6 +142,7 @@
 
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
+                        {{-- <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"><a href="{{ route('client.checkout.payment') }}">VNPAY</a></button> --}}
                         <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place
                             Order</button>
                     </div>

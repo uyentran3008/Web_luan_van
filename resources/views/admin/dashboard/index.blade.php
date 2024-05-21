@@ -97,7 +97,7 @@
           </div> --}}
           <div class="text-end pt-1">
             <p class="text-sm mb-0 text-capitalize">Total Import Material</p>
-            <h4 class="mb-0">{{ $totalInputCost }} VNĐ</h4>
+            <h4 class="mb-0">{{number_format( $totalInputCost) }} VNĐ</h4>
           </div>
         </div>
         <hr class="dark horizontal my-0">
@@ -114,7 +114,7 @@
           </div> --}}
           <div class="text-end pt-1">
             <p class="text-sm mb-0 text-capitalize">Total Export Material</p>
-            <h4 class="mb-0">{{ $totalExportCost }} VNĐ</h4>
+            <h4 class="mb-0">{{ number_format($totalExportCost) }} VNĐ</h4>
           </div>
         </div>
         <hr class="dark horizontal my-0">
@@ -131,7 +131,7 @@
           </div> --}}
           <div class="text-end pt-1">
             <p class="text-sm mb-0 text-capitalize"> Total Order Value</p>
-            <h4 class="mb-0">{{ $monthlyRevenue }} VNĐ</h4>
+            <h4 class="mb-0">{{ number_format($monthlyRevenue) }} VNĐ</h4>
           </div>
         </div>
         <hr class="dark horizontal my-0">
@@ -148,7 +148,7 @@
           </div> --}}
           <div class="text-end pt-1">
             <p class="text-sm mb-0 text-capitalize">Profits</p>
-            <h4 class="mb-0">{{ $monthlyRevenue - $totalExportCost }} VNĐ</h4>
+            <h4 class="mb-0">{{number_format( $monthlyRevenue - $totalExportCost )}} VNĐ</h4>
           </div>
         </div>
         <hr class="dark horizontal my-0">
@@ -193,7 +193,7 @@
                   <tr >
                       <td>{{ $data->date }}</td>
                       <td>{{ $data->order_count }}</td>
-                      <td>{{ $data->total_revenue }} VNĐ</td>
+                      <td>{{ number_format($data->total_revenue )}} VNĐ</td>
                   </tr>
               @endforeach
           </tbody>
@@ -201,7 +201,7 @@
             <tr>
                 <th>Total</th>
                 <th>{{ $totalOrder }}</th>
-                <th>{{ $totalRevenue }} VNĐ</th>
+                <th>{{number_format( $totalRevenue )}} VNĐ</th>
             </tr>
         
       </table>

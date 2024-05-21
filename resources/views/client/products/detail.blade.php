@@ -55,7 +55,7 @@
                                     {{-- <input type="button" class="btn btn-light" style="border: solid; margin: 10px; padding: 10px"id="{{ $size->id }}" name="size_id"  value="{{ $size->name }} "> --}}
                                     
                                     <input type="radio" class="form-check-input" name="size_id" value="{{ $size->id }}" id="size{{ $size->size }}">
-                                    <label for="size{{ $size->size }}" class="form-check-label">{{ $size->name }} :  {{ $size->pivot->price }} VNĐ</label>
+                                    <label for="size{{ $size->size }}" class="form-check-label">{{ $size->name }} :  {{ number_format($size->pivot->price )}} VNĐ</label>
 
                                     
                                     {{-- <div class="  " style="margin-left: 20px">Price: {{ $size->pivot->price }} VNĐ</div> --}}
@@ -125,7 +125,7 @@
                             
                             <div class="d-flex justify-content-center">
                                 
-                                <h6>{{ $product->sizes->first()->pivot->price }} VNĐ</h6><h6 class="text-muted ml-2"></h6>
+                                <h6>{{ number_format($product->sizes->first()->pivot->price) }} VNĐ</h6><h6 class="text-muted ml-2"></h6>
                                 
                             </div>
                             

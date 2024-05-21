@@ -107,7 +107,7 @@
                     
                     <div class="d-flex justify-content-center">
                         
-                        <h6>{{ $product->sizes->first()->pivot->price }} VNĐ</h6><h6 class="text-muted ml-2"></h6>
+                        <h6>{{ number_format($product->sizes->first()->pivot->price) }} VNĐ</h6><h6 class="text-muted ml-2"></h6>
                         
                     </div>
                     

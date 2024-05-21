@@ -21,7 +21,7 @@
             <div class="">
                 <h5>Size and Price</h5>
                 @foreach($product->sizes as $size)
-                    <p>Size {{ $size->name }} : {{ $size->pivot->price }} VNĐ</p>
+                    <p>Size {{ $size->name }} : {{number_format( $size->pivot->price )}} VNĐ</p>
                     
             
                 @endforeach

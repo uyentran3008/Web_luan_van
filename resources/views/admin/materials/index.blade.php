@@ -34,7 +34,7 @@
                     <td>{{ $item->name }}</td>
 
                     <td>{{ $item->unit_of_measure }}</td>
-                    <td>{{ $item->price }} VNĐ</td>
+                    <td>{{ number_format($item->price) }} VNĐ</td>
                     
                     <td>{{  $item->import ? $item->import->sum('quantity_entered') : 0  }}</td>
                     <td>{{ $item->export ? $item->export->sum('export_quantity') : 0 }}</td>

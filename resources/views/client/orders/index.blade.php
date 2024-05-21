@@ -29,7 +29,7 @@
                           <th>Customer Email</th>
                           <th>Customer Address</th>
                           <th>Note</th>
-                          <th>Payment</th>
+                          {{-- <th>Payment</th> --}}
                           <th>Created at</th>
                           {{-- <th>Action</th> --}}
 
@@ -41,15 +41,15 @@
                               <td>{{ $item->id }}</td>
 
                               <td>{{ $item->status }}</td>
-                              <td>{{ $item->total }} VNĐ</td>
+                              <td>{{ number_format($item->total) }} VNĐ</td>
 
-                              <td>{{ $item->ship }} VNĐ</td>
+                              <td>{{ number_format($item->ship) }} VNĐ</td>
                               <td>{{ $item->customer_name }}</td>
                               <td>{{ $item->customer_email }}</td>
 
                               <td>{{ $item->customer_address }}</td>
                               <td>{{ $item->note }}</td>
-                              <td>{{ $item->payment }}</td>
+                              {{-- <td>{{ $item->payment }}</td> --}}
                               <th>{{ $item->created_at }}</th>
                               {{-- <td>
                                   @if ($item->status == 'pending')

@@ -55,7 +55,7 @@
                                          </select>
 
                                 </td>
-                                <td>{{ $item->total }} VNĐ</td>
+                                <td>{{ number_format($item->total) }} VNĐ</td>
 
                                 {{-- <td>{{ $item->ship }} VNĐ</td> --}}
                                 <td>{{ $item->customer_name }}</td>

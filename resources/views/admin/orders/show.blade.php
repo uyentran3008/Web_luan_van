@@ -38,7 +38,7 @@
             @endforeach
             <tr class="table-dark">
                 
-                <th>Total: {{ $order->total }} VNĐ</th>
+                <th>Total: {{number_format( $order->total )}} VNĐ</th>
                 <th></th>
                 <th></th>
 

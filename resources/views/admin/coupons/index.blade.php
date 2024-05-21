@@ -33,7 +33,7 @@
                         <td>{{ $item->name }}</td>
 
                         <td>{{ $item->type }}</td>
-                        <td>{{ $item->value }}</td>
+                        <td>{{ number_format($item->value )}} VNĐ</td>
                         <td>{{ $item->expery_date }}</td>
 
                         <td>

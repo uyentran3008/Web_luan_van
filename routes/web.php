@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function(){
     Route::post('apply-coupon', [CartController::class, 'applyCoupon'])->name('client.carts.apply_coupon');
     Route::get('checkout', [CartController::class, 'checkout'])->name('client.checkout.index')->middleware('user.can_checkout_cart');
     Route::post('process-checkout', [CartController::class, 'processCheckout'])->name('client.checkout.proccess')->middleware('user.can_checkout_cart');
+    // Route::post('payment',[CartController::class, 'payment'])->name('client.checkout.payment');
     Route::get('list-orders', [OrderController::class, 'index'])->name('client.orders.index');
     Route::post('orders/cancel/{id}', [OrderController::class, 'cancel'])->name('client.orders.cancel');
 });

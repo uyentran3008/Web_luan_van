@@ -36,14 +36,14 @@
                                   <p
                                       style="{{ $item->product->sale ? 'text-decoration: line-through' : ''}}"                                                                                                                                                                                                                                             ">
                                       {{-- ${{ $item->price }} --}}
-                                      {{ $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price }} VNĐ
+                                      {{number_format( $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price) }} VNĐ
                                   </p>
 
                                   @if ($item->product->sale)
                                       <p
                                           style="
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ">
-                                          {{ $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale) }} VNĐ
+                                          {{number_format( $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale)) }} VNĐ
                                       </p>
                                   @endif
                                 
@@ -81,8 +81,8 @@
                               <td class="align-middle">
                                   <span
                                       id="cartProductPrice{{ $item->id }}">
-                                {{ $item->product->sale ? $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale) * $item->product_quantity 
-                                : $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price * $item->product_quantity }} VNĐ</span>
+                                {{number_format( $item->product->sale ? $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price - ($item->product->sizes()->where('name', $item->size->name)->first()->pivot->price  * 0.01 * $item->product->sale) * $item->product_quantity 
+                                : $item->product->sizes()->where('name', $item->size->name)->first()->pivot->price * $item->product_quantity) }} VNĐ</span>
 
                               </td>
                               <td class="align-middle">
@@ -138,7 +138,7 @@
                                 <ul>
                                     @foreach($coupons as $coupon)
                                         <li class="discount-code" data-code="{{ $coupon->name }}">
-                                            {{ $coupon->name }} - {{ $coupon->value }} VNĐ
+                                            {{ $coupon->name }} - {{number_format( $coupon->value )}} VNĐ
                                             
                                         </li>
                                     @endforeach
@@ -159,7 +159,7 @@
                       <div class="d-flex justify-content-between mb-3 pt-1">
                           <h6 class="font-weight-medium">Subtotal</h6>
                           <h6 class="font-weight-medium total-price" data-price="{{ $carts->total_price }}">
-                              {{ $carts->total_price }} VNĐ</h6>
+                              {{number_format( $carts->total_price )}} VNĐ</h6>
                       </div>
                       @if (session('discount_amount_price'))
                           <div class="d-flex justify-content-between">
